@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>Aniversário Liberal</title>
+		<script src="liberalismo.js"></script>
+		<script type="text/javascript">
+			var url = new URL(window.location.href);
+			var bday = url.searchParams.get("bday");
+			var html = "";
+			if (bday === null) {
+				html += "Diz-me o teu aniversário, e dir-te-ei com o que sofrerás!";
+				html += "<form><input type='date' required pattern='\d{4}-\d{2}-\d{2}' name='bday'> <button>OK</button></form>";
+				// TODO: gerar um resultado aleatório:
+				// <form><input type="hidden" name="random"> <button>Não!</button></form>
+			} else {
+				var birthday = new Date(bday);
+				var month = birthday.getMonth();
+				var day = birthday.getDate() - 1;
+				html += "<strong>Aqui está a tua sina:</strong> ";
+				html += meses[month] + " " + dias[day];
+			}
+			function renderContent() {
+				 document.getElementById("content").innerHTML = html; 
+			}
+		</script>
+	</head>
+	<body onload="renderContent()">
+		<h1>Aniversário Liberal</h1>
+		<div id="content"></div>
+		<hr/>
+		<h3>Notas</h3>
+		Isto é uma piada. Se não percebes... não tem mal, e não leves a mal, hm? O crédito disto é todo de <a href="https://twitter.com/SexoGratweeto/status/1429168505614647304">quem teve a ideia</a>. O site é Software Livre, e podes contribuir, ajudar a melhorar e muitas outras coisas <a href="https://github.com/marado/aniversario-liberal">aqui</a>.
+	</body>
+</html>
